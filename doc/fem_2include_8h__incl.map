@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$eq__core_8h.html" title="A core class for my basic behavior for my class wrappers." alt="" coords="423,237,556,267"/>
+<area shape="rect" id="node15" href="$eq__base_8h.html" title="A base class for my EquationSystem wrappers." alt="" coords="3567,160,3703,189"/>
+<area shape="rect" id="node81" href="$eq__boundary__base_8h.html" title="A base class for my boundary condition class." alt="" coords="5604,237,5826,267"/>
+<area shape="rect" id="node89" href="$eq__data__base_8h.html" title="Header file for EqDataBase class." alt="" coords="124,160,292,189"/>
+<area shape="rect" id="node98" href="$eq__variable__linker_8h.html" title="Header file for a class for adding linking system variables." alt="" coords="468,160,658,189"/>
+<area shape="rect" id="node106" href="$my__mesh_8h.html" title="Header file for MyMesh.cpp." alt="" coords="1036,160,1180,189"/>
+<area shape="rect" id="node114" href="$heat__eq_8h.html" title="Header file for HeatEq class." alt="" coords="3879,83,4007,112"/>
+<area shape="rect" id="node158" href="$energy__eq_8h.html" title="Header file for the volume averaging EnergyEq class." alt="" coords="2420,83,2612,112"/>
+<area shape="rect" id="node185" href="$momentum__eq_8h.html" title="Header file for the volume averaging MomentumEq class." alt="" coords="1311,83,1530,112"/>
+<area shape="rect" id="node149" href="$heat__eq__boundary_8h.html" title="Header file for Heat_eq_boundary classes." alt="" coords="5782,160,5995,189"/>
+</map>
