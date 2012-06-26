@@ -26,35 +26,61 @@
       </header>
       <section>
 		  
-<h3>Welcome.</h3>
+<h2>Welcome.</h2>
 <p>The following summarizes the research conducted by
 <a href="mailto:andrew.e.slaughter@gmail.com">Andrew E Slaughter</a> while a <a href="www.nsf.gov">National Science Founcation</a> <a href="http://www.nsf.gov/funding/pgm_summ.jsp?pims_id=503144">Postdoctoral
 Fellow</a> at <a href="www.cornell.edu">Cornell University</a>.</p>
-<p>This project is curently under development and until the findings are 
-published the code is remaining in a private repository.  For information regarding the author of this project visit <a href="http://aeslaughter.github.com">aeslaughter.github.com</a>.</p>
+<p><b><i>This project is curently under development and until the findings are 
+published the code is remaining in a private repository.  For information regarding the author of this project visit <a href="http://aeslaughter.github.com">aeslaughter.github.com</a>.</i></b></p>
 
-<h3>Project Description</h3>
+<p><i>Please note that this project is under development, as such so is the documentation and this website.</i></p>
 
-<h3>Products</h3>
-<h4>Meshing</h4>
+<h2>Project Description</h2>
+<p><a href="http://www.nsf.gov/awardsearch/showAward.do?AwardNumber=1049501"> "A Stochastic Phase-tracking Snow Micro-structure Model."</a></p>
+<p>The objective of the work proposed is to research the use of stochastic, phase-tracking finite element techniques common in modeling alloy solidification to model the evolution of the snow micro-structure. A model of this type would improve the current understanding of snow metamorphism by providing a means to monitor the evolution of the ice matrix within the snow while accounting for uncertainties in the system. Uncertainties associated with the snow micro-structure include the random initial crystallographic orientation, a limited understanding of ice crystal growth kinetics, and perturbations that exist in the environmental conditions on a local scale. The technique proposed for exploration includes a deterministic, level set, adaptive mesh method capable of tracking heat, mass, and momentum transport efficiently in both two- and three-dimensions. Using this deterministic solution as a basis, a collocation-based stochastic solution strategy will be employed to account for the aforementioned uncertainties. The result is expected to be model that produces a probability distribution of snow topology realizations. The proposed solution approach is novel and will bring new insights in the underlying physical phenomena of snow metamorphism, which is of critical importance to climatology, hydrology, and avalanche risk reduction.</p>
 
-
-<h3>Documentation</h3>
+<h2>Documentation: <a href="http://aeslaughter.github.com/postdoc/doc"> click here </a></h2>
 <p>It is a primary purpose for the software developed from this project to be usable for furture reseach of my own and by others interested in using or expanding the project. As such, I am taking the task of documenting the code seriously.</p>
 <p>The following link contains the documentation, created with <a href="www.doxygen.org">Doxygen</a>, for the code associated with this project. The source code is not included just the header, class, and function documentation. The complete source code will be available once the project is complete and the results published.</p>
-<p>Please note that this project is under development, as such so is the documentation.</p>
-<p align="center" style="font-size:larger;">
-	<a href="http://aeslaughter.github.com/postdoc/doc"> Project Code Documentation </a>
-</p>
 
+<h2>Products</h2>
+<h3>Meshing</h3>
+<p> <b><u> The Problem</u>:</b> The basis for the 3D model is expected to be 3D micro-CT scanned images of snow, similar to those discussed in <a href="http://onlinelibrary.wiley.com/doi/10.1002/hyp.5800/pdf"> Schneebeli and Sokratov (2004)</a>. </p>
 
+<p> <b><u> The Solution</u>:</b>
+Using a existing open-source libraries, <a href="http://www.cgal.org">CGAL</a>, <a href="http://www.vtk.org">VTK</a>, and <a href="http://www.itk.org">ITK</a>, I developed code for performing this task. The <a href="doc/class_slaughter_vol2mesh_1_1_vol2mesh.html"><b>Vol2mesh</b></a> class was developed as a wrapper class for the meshing procedures and includes the ability to mesh multiple subdomains, set the meshing and optimization critiera, and compute the mesh quaility. The command-line executable, <a href="doc/v2m.html"><b>v2m</b></a> provides a command-line interface for the <a href="doc/class_slaughter_vol2mesh_1_1_vol2mesh.html"><b>Vol2mesh</b></a> class. </p>
 
+<div>
+<p> <b><u> The Application</u>:</b>
+<img src="images/v2m.png" width="300" align="right"  style="padding:5px"/> The adjacet image is an example of a radom porous volume (<a href="images/randvol_30.tif">randvol_30.tif</a>) that was meshed using the code summariezd above. Using the <a href="doc/v2m.html"><b>v2m</b></a> command line program or the <a href="doc/class_slaughter_vol2mesh_1_1_vol2mesh.html"><b>Vol2mesh</b></a> class this is accomplished easily as the following snippets demonstrate.  Additional, examples are include in the source documentation <a href="doc/v2m.html" /a> here </a>.
+</p></div>
 
+<div>
+<i>Command-line example:</i>
+<pre><code class="codeblock">
+$ v2m ./randvol_30.tif --facet-size=2  --facet-distance=0.1
+</pre></code>
 
+<i>C++ and <a href="doc/class_slaughter_vol2mesh_1_1_vol2mesh.html"><b>Vol2mesh</b></a> class example:</i>
+<pre><code class="codeblock">
+// Open the image and create Vol2mesh class
+Vol2mesh v2m("randvol_30.tif");
 
+// Set the meshing critiera
+<a href="doc/class_slaughter_vol2mesh_1_1_vol2mesh_mesh_criteria.html">Vol2meshMeshCriteria </a> crit;
+crit.facet_size = 2;
+crit.facet_distance = 0.1;
+v2m.set_default_criteria(crit);
 
+// Generate and output the mesh
+v2m.generate_mesh();
+v2m.write();
+</pre></code></p>
+</div>
 
+<h2>Contact</h2>
 
+<p>If you have any questions about my projects feel free to contact me at <a href="mailto:andrew.e.slaughter@gmail.com">andrew.e.slaughter@gmail.com</a>.</p>
 
       </section>
       <footer>
