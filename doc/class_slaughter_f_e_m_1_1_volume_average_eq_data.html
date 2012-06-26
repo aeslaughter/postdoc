@@ -24,7 +24,7 @@
     extensions: ["tex2jax.js"],
     jax: ["input/TeX","output/HTML-CSS"],
 });
-</script><script src="http://www.mathjax.org/mathjax/MathJax.js"></script>
+</script><script src="http://cdn.mathjax.org/MathJax.js"></script>
 
 </head>
 <body>
@@ -145,8 +145,8 @@ vector&lt; Number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a cla
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3723103017ccd325f6f24446652ab1c2"></a><!-- doxytag: member="SlaughterFEM::VolumeAverageEqData::epsilon" ref="a3723103017ccd325f6f24446652ab1c2" args="(const Point &amp;p)" -->
 Number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html#a3723103017ccd325f6f24446652ab1c2">epsilon</a> (const Point &amp;p)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for returning the volume fraction. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html#ad1a1ab8d4df4af16140df503f695b10d">element_length</a> (Elem *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the \(\tau_1^e \) value for the advective stabilization term (Eq. 63)  <a href="#ad1a1ab8d4df4af16140df503f695b10d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html#a6df824204efb52574156708ec2ec5c78">element_length</a> (const Elem *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the \(\tau_1^e \) value for the advective stabilization term (Eq. 63)  <a href="#a6df824204efb52574156708ec2ec5c78"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html#aaf26b4bbe3ae79db8123317e47459cc7">P_alpha</a> (const Point &amp;p)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the P_alpha stabilization term, Eq. 75.  <a href="#aaf26b4bbe3ae79db8123317e47459cc7"></a><br/></td></tr>
 </table>
@@ -154,14 +154,14 @@ Number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <div class="textblock"><p>A class for solving the volume averaged momentum equation with libMesh. </p>
 <p>This class contains the necessary components for computing the various element and nodal parameters for the volume averaging finite element technique. All references to equations in the docmentation of this class, unless noted otherwise, it taken from Zabaras and Samanta (2004), "A stabilized volume-averaging finite element method for flow in porous media and binary alloy solidification processes." </p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ad1a1ab8d4df4af16140df503f695b10d"></a><!-- doxytag: member="SlaughterFEM::VolumeAverageEqData::element_length" ref="ad1a1ab8d4df4af16140df503f695b10d" args="(Elem *elem)" -->
+<a class="anchor" id="a6df824204efb52574156708ec2ec5c78"></a><!-- doxytag: member="SlaughterFEM::VolumeAverageEqData::element_length" ref="a6df824204efb52574156708ec2ec5c78" args="(const Elem *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Number <a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html#ad1a1ab8d4df4af16140df503f695b10d">VolumeAverageEqData::element_length</a> </td>
+          <td class="memname">Number <a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html#a6df824204efb52574156708ec2ec5c78">VolumeAverageEqData::element_length</a> </td>
           <td>(</td>
-          <td class="paramtype">Elem *&#160;</td>
+          <td class="paramtype">const Elem *&#160;</td>
           <td class="paramname"><em>elem</em></td><td>)</td>
           <td></td>
         </tr>
@@ -223,7 +223,7 @@ Number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
       <li class="navelem"><a class="el" href="namespace_slaughter_f_e_m.html">SlaughterFEM</a>      </li>
       <li class="navelem"><a class="el" href="class_slaughter_f_e_m_1_1_volume_average_eq_data.html">VolumeAverageEqData</a>      </li>
 
-    <li class="footer">Generated on Mon Jun 18 2012 15:07:31 for NSF Postdoctoral Research by
+    <li class="footer">Generated on Tue Jun 26 2012 17:04:48 for NSF Postdoctoral Research by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

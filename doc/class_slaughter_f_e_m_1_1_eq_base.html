@@ -24,7 +24,7 @@
     extensions: ["tex2jax.js"],
     jax: ["input/TeX","output/HTML-CSS"],
 });
-</script><script src="http://www.mathjax.org/mathjax/MathJax.js"></script>
+</script><script src="http://cdn.mathjax.org/MathJax.js"></script>
 
 </head>
 <body>
@@ -162,8 +162,9 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html#a3bf72710ab96b134ce17cc70aed43761">EqBase</a> (EquationSystems &amp;sys, string <a class="el" href="class_slaughter_f_e_m_1_1_eq_core.html#a5243bf4ffee310366ffc311f362f6d28">name</a>, const Order order=SECOND)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a3bf72710ab96b134ce17cc70aed43761"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html#a3d69a73580cd53bfe61e9c1d4c2faf3d">assemble</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to the equation system passed in at construction.  <a href="#a3d69a73580cd53bfe61e9c1d4c2faf3d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d69a73580cd53bfe61e9c1d4c2faf3d"></a><!-- doxytag: member="SlaughterFEM::EqBase::assemble" ref="a3d69a73580cd53bfe61e9c1d4c2faf3d" args="()=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html#a3d69a73580cd53bfe61e9c1d4c2faf3d">assemble</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">libMesh assembly function <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6589647ca0ba0ece71aa351f4c564e13"></a><!-- doxytag: member="SlaughterFEM::EqBase::initialize" ref="a6589647ca0ba0ece71aa351f4c564e13" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html#a6589647ca0ba0ece71aa351f4c564e13">initialize</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">libMesh initilize function <br/></td></tr>
@@ -389,27 +390,6 @@ template&lt;typename Type, class TypeBoundaryBase = EqBoundaryBase&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a3d69a73580cd53bfe61e9c1d4c2faf3d"></a><!-- doxytag: member="SlaughterFEM::EqBase::assemble" ref="a3d69a73580cd53bfe61e9c1d4c2faf3d" args="()=0" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Type, class TypeBoundaryBase = EqBoundaryBase&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void <a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html">SlaughterFEM::EqBase</a>&lt; Type, TypeBoundaryBase &gt;::<a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html#a3d69a73580cd53bfe61e9c1d4c2faf3d">assemble</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [protected, pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>A reference to the equation system passed in at construction. </p>
-<p>The name of the system created by the class libMesh assembly function </p>
-
-</div>
-</div>
 <a class="anchor" id="a308250b3db51f34ae39dc4ec3927fcda"></a><!-- doxytag: member="SlaughterFEM::EqBase::get_boundary_index" ref="a308250b3db51f34ae39dc4ec3927fcda" args="(const int id)" -->
 <div class="memitem">
 <div class="memproto">
@@ -622,7 +602,7 @@ template&lt;typename Type, class TypeBoundaryBase = EqBoundaryBase&gt; </div>
       <li class="navelem"><a class="el" href="namespace_slaughter_f_e_m.html">SlaughterFEM</a>      </li>
       <li class="navelem"><a class="el" href="class_slaughter_f_e_m_1_1_eq_base.html">EqBase</a>      </li>
 
-    <li class="footer">Generated on Mon Jun 18 2012 15:07:30 for NSF Postdoctoral Research by
+    <li class="footer">Generated on Tue Jun 26 2012 17:04:48 for NSF Postdoctoral Research by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>
