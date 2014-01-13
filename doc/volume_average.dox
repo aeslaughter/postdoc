@@ -1,0 +1,9 @@
+/*! \page volume_average Volume Average Equations
+\tableofcontents
+
+\section volume_average_intro Introduction
+This page provides details of the various equations associated with the 
+momentum, mass, and energy conservation equations using a volume averaging
+technique.
+	- \subpage volavg_energy
+*/

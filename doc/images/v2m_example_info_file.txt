@@ -1,0 +1,36 @@
+FILE INFORMATION -------------------------------------------------------------------
+   input-file: ../data/vol2mesh/input/randvol_30.inr
+  output-file: ../source/demo/fem/transient_heat/randvol_30.ex2
+
+INPUT PARAMETERS -------------------------------------------------------------------
+             facet-angle: 30.000
+              facet-size:  2.000
+          facet-distance:  0.500
+  cell-radius-edge-ratio:  3.000
+               cell-size:  8.000
+
+MESH RESULTS -----------------------------------------------------------------------
+   execution time (sec.):  1.092
+  num. of pixels (x,y,z): 30, 30, 30
+      pixel dim. (x,y,z):  0.033,  0.033,  0.033
+      image dim. (x,y,z):  1.000,  1.000,  1.000
+        num. of elements: 10647
+           num. of faces: 8136
+
+TETRAHEDRAL QUALITY ----------------------------------------------------------------
+                    Name     Lower     Upper   Average Std. dev.   COV (%)
+              Edge ratio     1.044    10.405     2.008     0.324    16.142
+            Aspect ratio     1.012     6.838     1.940     0.436    22.488
+            Radius ratio     1.001     6.962     1.700     0.388    22.830
+        Aspect Frobenius     1.001     4.318     1.493     0.153    10.250
+  Minimal dihedral angle     8.139    85.311    43.174   189.157   438.126
+          Collapse ratio     0.069     0.797     0.368     0.013     3.582
+             Aspect beta     1.001     6.962     1.700     0.388    22.830
+                  Volume     0.000     0.000     0.000     0.000     0.004
+               Condition     1.001     6.078     1.559     0.277    17.756
+                Jacobian     0.000     0.003     0.000     0.000     0.023
+         Scaled jacobian     0.047     0.981     0.465     0.029     6.265
+                   Shape     0.232     0.999     0.706     0.021     2.975
+   Relative size squared     0.001     0.999     0.346     0.074    21.257
+          Shape and size     0.001     0.912     0.243     0.040    16.352
+              Distortion     1.000     1.000     1.000     0.000     0.000

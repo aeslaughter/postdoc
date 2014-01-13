@@ -1,0 +1,223 @@
+/*! \page test_user_options Using the UserOptions Class
+\dontinclude test_user_options.cpp
+\tableofcontents
+
+\section test_user_options_intro Introduction
+The UserOptions class is a wrapper of the Boost.Program_options 
+library, a link to the documetation is included below. The code in this 
+example explores all of the functionality that was built into this 
+wrapper class to make using the Boost class a bit easier. The 
+UserOptions only implements a portion of what is 
+possible with the Boost code, but it was designed in such a fashion
+that the program options may be manipulated with the Boost libraries
+to achieve custom option handling without changing the source code
+of the class, just the program using it.
+
+Boost.Program_options:\n
+http://www.boost.org/doc/libs/1_49_0/doc/html/program_options.html
+
+\section test_user_options_source Program Explained
+The test program begins by including the necessary file and using the
+related namespace for the common library. The main program then begins,
+the main program requires the \c argc and \c argv inputs to which 
+the command line inputs are captured.
+\snippet test_user_options.cpp include
+
+The first instance of the UserOptions class for this example is referred
+to as the "master" class, since all functionality will stem from this
+class. First, the \c main instance is created which will include some
+general options as evidenced by the header.
+
+Then a title is added, this title will be printed prior to the list of 
+variables when the \c --help is used. Thus, the help flag must be added.
+The \c add_flag is used for the help because it doesn't require an 
+associated value, simply the presence of \c --help on the command line
+triggers the behavior. The \c --help flag is automatically handled by
+the UserOptions class to display the options list when this flag
+is added.
+
+Next, another trigger is added (\c --verbose) which is used by the 
+test program to toggle the display of the variables when the program 
+is executed.
+
+Finally, an option is specified that defines a default coinfiguration 
+file, this options is automatically handled by the UserOptions class.
+More details of the configuration file is given here: \ref test_user_options_config .
+\snippet test_user_options.cpp main
+
+After the \c main instance, two more instances of the UserOptions are
+created that contain a number of options. The "Advanced" options include
+notation that is used by the configuration file (\ref test_user_options_config).
+Additionally, the \c input and \c output options utilize positional 
+arguments, these function exactly as described in the Boost documentation.
+\snippet test_user_options.cpp options
+
+The next instance of the class will be used to add a few hidden options
+that will not be visible with the general \c --help, but a flag is 
+added \c --show-hidden that causes the hidden options to display. The 
+code for displaying is included in the program itself.
+\snippet test_user_options.cpp hidden
+
+At this point all of the desired options are defined, but they are not
+ready for use. To make them available and functional, first the 
+additional instances are grouped to the "master" instance with the 
+\c add function. Then the options are made ready by apply the command line
+arguments with the \c apply_options function.
+\snippet test_user_options.cpp apply
+
+The remainder of the program simply implements a few types of display
+to demonstrate how the options are used, see \ref test_user_options_use .
+\snippet test_user_options.cpp use
+
+\section test_user_options_use Using the Test Program
+The command line syntax is as follows. For options defined with a 
+short-hand flag, those with a "," followed by a single character (e.g., 
+the \c value option in the example program) the following syntax is 
+supported. If a short-hand is not given, only the \c -- commands are
+valid.
+\verbatim
+$ ./test_user_options --value=5
+$ ./test_user_options --value 5
+$ ./test_user_options -v 5
+\endverbatim
+
+To display the list of available options simply use the \c --help
+option as follows.
+\verbatim
+$ ./test_user_options --help
+$ ./test_user_options -h
+\endverbatim
+
+To display a list of all the values of all the options, use the 
+\c --verbose flag. This flag can be anywhere if additional options are
+set.
+\verbatim
+$ ./test_user_options --verbose
+\endverbatim
+
+To display the hidden options use the \c --show-hidden flag, not that
+this behavior is not part of the class, just the example.
+\verbatim
+$ ./test_user_options --show-hidden
+\endverbatim
+
+\subsection test_user_options_config Configuration Files
+An example configuration file is included in the \c data/test_user_options
+directory. This file is shown below. Notice the use of \c [input] label.
+This causes all options below it to have the \c input. prefix. Thus,
+the options, when defined, must have this syntax as shown in the 
+advanced options of the example program.
+
+\verbatim
+advanced-value=360
+[input]
+path=/this/is/my/path/
+name=myfile
+ext=.txt
+\endverbatim
+
+In all cases the values from the command-line overwrite values in the 
+configuration file. For example the following changes the value 
+for \c --advanced-value from the value of 360 defined in the file.
+\verbatim
+$ ./test_user_options --advanced-value=180 --verbose
+\endverbatim
+
+\subsection test_user_options_pos Positional Options
+The use of positional options is used to make setting the input
+and output files easier, that is without the inclusion of the \c --input
+and \c --output flags or thier short-hands. The user should refer to the 
+Boost documentation for more help with positional options. The following 
+options demonstrate how they are used in this program.
+
+The basic usage, more advanced usage exists, sets the first input that 
+does not have a flag is set to the input and the second without a flag 
+to the output. 
+
+\verbatim
+$ ./test_user_options in.dat --advanced-value=180 --verbose out.dat
+$ ./test_user_options in.dat out.dat --advanced-value=180 --verbose 
+$ ./test_user_options in.dat --advanced-value=180 out.dat --verbose 
+\endverbatim
+
+\subsection test_user_options_exist Option Existance
+The existance of an option may be tested using \c exist member function
+as follows. This allows the user to test if an option is specified This
+is useful if no default value is given, which causes an error when the
+\c get function is used.
+
+\code
+if (main.exist("many")){
+	std::vector<int> vec = main.get<std::vector<int> >("many");
+	for(int i = 0; i < vec.size(); i++){
+		printf("many[%d] = %d\n", i, vec[i]);
+	}
+}
+\endcode
+
+\subsection test_user_options_multi Multiple Values
+It is possible to store multiple instances of an option, this is 
+accomplished by using a \c std::vector as the option type, as shown 
+below and in the advanced options group in the example. 
+
+\code
+adv.add_option<std::vector<int> >("many,m", "Many of these are allowed");
+\endcode
+
+Run the following to store multiple integers in the "many" option.
+
+\verbatim
+$ ./test_user_options --many 1 --many 2 --verbose
+\endverbatim
+
+Multiple values for a single option may also be specified. This is
+accomplished with the same syntax as above.
+
+\code
+adv.add_option<std::vector<double> >("multi","This input can contain multiple values");
+\endcode
+ 
+This vector then stores the value(s)
+specified after the option flag, which is illustrated with the following
+command.
+\verbatim
+$ ./test_user_options --multi 1 12 1.2 --verbose
+\endverbatim
+
+It is possible to define default values, but an additional argument is 
+required. This argument provides the text to display when the \c --help
+command is given. Failure to include this value will produce an error
+message from Boost. For example:
+
+\code
+std::vector<int> def;
+def.push_back(5);
+def.push_back(6);
+adv.add_option<std::vector<int> >("many-multi", def, "You can combine behavior and list default(s)", "[5,6]");
+\endcode
+
+The two methods methoded above for defining multipe values are interchangeable
+or may be used in combination, as illustred with the "many-multi" option
+in the test program.
+
+\verbatim
+./test_user_options --verbose --many-multi 10 11 12 --many-multi 20 21 22 --value 1 --many 1 --many 2 --multi 1 1.1 1.2 --multi 2 2.1 2.2
+\endverbatim
+
+The multitoken behavior is built-in to the positional arguments, however
+the user must specify how many values are expected, as shown in the
+following code and command-line execution. For this reason, the \c 
+apply_multitoken_option does not allow positional agruments.
+
+\code
+io.add_option<std::vector<string> >("file-list","A list of files", 3);
+\endcode
+
+\verbatim
+$ ./test_user_options --verbose input.txt output.txt file1.txt file2.txt
+\endverbatim
+
+\section test_user_options_code Complete Program
+\include test_user_options.cpp
+
+*/ 

@@ -1,0 +1,209 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Thermodynamic Relationships Test Function</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-07-17"><meta name="DC.source" content="thermodynamics.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">   
+			MathJax.Hub.Config({jax: ["input/TeX","output/HTML-CSS"],}); 
+			MathJax.Hub.Config({"HTML-CSS": {preferredFont: "TeX"}}); 
+		</script></head><body><div class="content"><h1>Thermodynamic Relationships Test Function</h1><!--introduction--><p>Section 4 of Zabaras and Samanta (2004) details the thermodynamic relationships that relate temperature (\(\theta\)), volume fraction (\(\epsilon\)), and liquid concentration (\(C_l\)). This function is designed to test that these relationships are working properly. All equation references refer to Samanta and Zabaras (2005).</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Function definition</a></li><li><a href="#3">Gather the constants and element data</a></li><li><a href="#4">Compute and dislpay the nodal values</a></li><li><a href="#6">Eq. 17</a></li><li><a href="#7">Display function</a></li><li><a href="#8">References</a></li></ul></div><h2>Function definition<a name="1"></a></h2><pre class="codeinput"><span class="keyword">function</span> thermodynamics
+</pre><pre class="codeinput"><span class="comment">% THERMODYNAMICS</span>
+<span class="comment">% Test for thermodynamic relationships of Samanta and Zabaras 2005</span>
+<span class="comment">%</span>
+<span class="comment">% Syntax:</span>
+<span class="comment">%   thermodynamics;</span>
+</pre><h2>Gather the constants and element data<a name="3"></a></h2><p>C = liquid concentration (non-dimensional) T = nodal temperatuer (non-dimensional)</p><pre class="codeinput">[ ~, T] = parameters;
+p = quad4;
+</pre><h2>Compute and dislpay the nodal values<a name="4"></a></h2><pre class="codeinput"><span class="keyword">for</span> i = 1:length(C);
+
+    <span class="comment">% Display the current point</span>
+    str = sprintf(<span class="string">'ELEMENT 0; Point %i (%g, %g)'</span>, i, p(i,1), p(i,2)); disp(str);
+
+    <span class="comment">% Display the thermodynamic values at this point</span>
+    out(<span class="string">'theta_m'</span>, theta_m(const));
+    out(<span class="string">'theta_liquidus'</span>, theta_liquidus(C(i),const));
+    out(<span class="string">'theta_solidus'</span>, theta_solidus(C(i),const));
+    out(<span class="string">'h_liquidus'</span>, h_liquidus(C(i),const));
+    out(<span class="string">'h_solidus'</span>, h_solidus(C(i),const));
+    out(<span class="string">'h_e'</span>, h_e(C(i),const));
+    out(<span class="string">'epsilon_e'</span>, epsilon_e(C(i),const));
+
+    <span class="comment">% Compute the initial enthalpy</span>
+    e = epsilon_initial(T(i),C(i), const);
+    <span class="comment">%out('epsilon_initial', e);</span>
+    h = enthalpy_initial(e, T(i), const);
+
+
+    out(<span class="string">'epsilon'</span>, epsilon();
+    <span class="comment">%out('theta', theta(h, e, C(i), const));</span>
+
+
+
+
+    <span class="comment">%out('h', h);</span>
+
+    <span class="comment">% Arbitrarily alter the enthalpy</span>
+    <span class="comment">%h = 0.9*h;</span>
+
+    <span class="comment">% Compute epsilon</span>
+   <span class="comment">% e = epsilon(h, e, C(i), const);</span>
+  <span class="comment">%  out('epsilon', e);</span>
+
+  <span class="comment">%  Tnew = theta(h, e, C(i), const);</span>
+  <span class="comment">%  out('theta_new', Tnew);</span>
+  <span class="comment">%  disp('');</span>
+<span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><h2>Eq. 17<a name="6"></a></h2><pre class="codeinput"><span class="keyword">function</span> x = T_liq(C)
+
+
+
+
+<span class="keyword">end</span>
+</pre><h2>Display function<a name="7"></a></h2><pre class="codeinput"><span class="keyword">function</span> out(str,num)
+    disp([<span class="string">'  '</span>, str, <span class="string">' = '</span>, num2str(num)]);
+<span class="keyword">end</span>
+</pre><h2>References<a name="8"></a></h2><p>
+<dd>Samanta, D. and Zabaras, N.</dd>
+<dd><i>Modelling convection in solidification process using stabilized finite element techniques.</i></dd>
+<dd>International Journal for Numerical Methods in Engineering, <b>2005</b>, Vol. 64, pp. 1769&ndash;1799.</dd>
+</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% Thermodynamic Relationships Test Function
+% Section 4 of Zabaras and Samanta (2004) details the thermodynamic
+% relationships that relate temperature (\(\theta\)), volume fraction
+% (\(\epsilon\)), and liquid concentration (\(C_l\)). This function is
+% designed to test that these relationships are working properly. All
+% equation references refer to Samanta and Zabaras (2005).
+
+%% Function definition
+function thermodynamics
+% THERMODYNAMICS
+% Test for thermodynamic relationships of Samanta and Zabaras 2005
+%
+% Syntax:
+%   thermodynamics;
+
+%% Gather the constants and element data
+% C = liquid concentration (non-dimensional)
+% T = nodal temperatuer (non-dimensional)
+[ ~, T] = parameters;
+p = quad4;
+
+%% Compute and dislpay the nodal values
+for i = 1:length(C);
+    
+    % Display the current point
+    str = sprintf('ELEMENT 0; Point %i (%g, %g)', i, p(i,1), p(i,2)); disp(str);
+    
+    % Display the thermodynamic values at this point
+    out('theta_m', theta_m(const));
+    out('theta_liquidus', theta_liquidus(C(i),const));
+    out('theta_solidus', theta_solidus(C(i),const));
+    out('h_liquidus', h_liquidus(C(i),const));
+    out('h_solidus', h_solidus(C(i),const));
+    out('h_e', h_e(C(i),const));
+    out('epsilon_e', epsilon_e(C(i),const));
+
+    % Compute the initial enthalpy
+    e = epsilon_initial(T(i),C(i), const);
+    %out('epsilon_initial', e);
+    h = enthalpy_initial(e, T(i), const);
+    
+
+    out('epsilon', epsilon();
+    %out('theta', theta(h, e, C(i), const));
+    
+    
+    
+    
+    %out('h', h);
+
+    % Arbitrarily alter the enthalpy
+    %h = 0.9*h;
+    
+    % Compute epsilon
+   % e = epsilon(h, e, C(i), const);
+  %  out('epsilon', e);
+
+  %  Tnew = theta(h, e, C(i), const);
+  %  out('theta_new', Tnew);
+  %  disp('');
+end 
+
+end
+
+%% Eq. 17
+function x = T_liq(C)
+
+
+
+
+end
+
+%% Display function
+function out(str,num)
+    disp(['  ', str, ' = ', num2str(num)]);
+end
+
+%% References
+% <html>
+% <dd>Samanta, D. and Zabaras, N.</dd>
+% <dd><i>Modelling convection in solidification process using stabilized finite element techniques.</i></dd>
+% <dd>International Journal for Numerical Methods in Engineering, <b>2005</b>, Vol. 64, pp. 1769&ndash;1799.</dd>
+% </html>
+##### SOURCE END #####
+--></body></html>

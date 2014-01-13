@@ -1,0 +1,50 @@
+<table border="1" spacing="5" align="center"> 
+	<tr align="center"> 
+		<td> Mesh ID </td> 
+		<td> Execution time (sec.) </td>
+		<td> No. of elements </td>
+		<td> No. of facets </td>
+		<td> Condition number </td>
+		<td> Condition number COV (%) </td>
+		</tr>
+	<tr align="center"> 
+		<td> 3a </td> 
+		<td> 0.044 </td>
+		<td> 235 </td>
+		<td> 342 </td>
+		<td> 1.32 </td>
+		<td> 5.1 </td>
+	</tr>
+	<tr align="center"> 
+		<td> 3b </td> 
+		<td> 0.432 </td>
+		<td> 3,824 </td>
+		<td> 3,300 </td>
+		<td> 1.39 </td>
+		<td> 9.7 </td>
+	</tr>
+	<tr align="center"> 
+		<td> 3c </td> 
+		<td> 822.96 </td>
+		<td> 5,614,679 </td>
+		<td> 3,085,812 </td>
+		<td> 2.16 </td>
+		<td> 32.9 </td>
+	</tr>
+	<tr align="center"> 
+		<td> 3d </td> 
+		<td> 29.87 </td>
+		<td> 406,381 </td>
+		<td> 79,299 </td>
+		<td> 1.25 </td>
+		<td> 5.3 </td>
+	</tr>
+	<tr align="center"> 
+		<td> 3e </td> 
+		<td> 17.29 </td>
+		<td> 143,938 </td>
+		<td> 92,702 </td>
+		<td> 1.98 </td>
+		<td> 32.7 </td>
+	</tr>
+</table> 

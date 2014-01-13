@@ -1,0 +1,51 @@
+/*! \mainpage C++ Programs of Andrew Slaughter's Postdoctoral Research Projects
+\tableofcontents
+
+\section main_intro Introduction
+This documentation details the various C++ programs developed by Andrew E.
+Slaughter related to the National Science Foundation Postdoctoral Fellowship.
+
+The source code contained in this documentation serves a number of purposes.
+A good place to begin is by examining the Modules page, which contains 
+the source code documentation orgainized into groups to which the code
+is aimed.
+
+\section main_repository Repository
+The source code for this project is hosted on bitbucket.org in a private
+repository, but it has a public issue tracker: https://bitbucket.org/slaughter/postdoc/issues?status=new&status=open.
+
+\section main_libraries Custom Libraries and Programs
+In order to minimize the amount of code generated various libraries were
+created, the following list comprises the major libraries associated with
+this project.
+	- \subpage test_user_options
+	- \subpage v2m
+	- \subpage volume_average
+	
+\section main_matlab MATLAB
+Various MATLAB functions were created to aid in data analysis and 
+validation the page, \subpage matlab, is dedicated to detailing these tools.
+	
+\section main_contact Contact Information
+\b Address: \n
+Andrew E. Slaughter \n
+Materials Process Design and Control Laboratory \n
+Sibley School of Mechanical and Aerospace Engineering \n 
+169 Frank H. T. Rhodes Hall \n  
+Cornell University \n  
+Ithaca, NY 14853-3801 \n  
+U.S.A. \n
+ 
+\b E-mail: andrew.e.slaughter@gmail.com \n
+\b Phone: (607) 229 - 1829 \n
+
+
+
+
+
+
+
+
+
+
+*/

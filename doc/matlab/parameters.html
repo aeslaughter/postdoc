@@ -1,0 +1,159 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Volume Average constants (test values)</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-07-17"><meta name="DC.source" content="parameters.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">   
+			MathJax.Hub.Config({jax: ["input/TeX","output/HTML-CSS"],}); 
+			MathJax.Hub.Config({"HTML-CSS": {preferredFont: "TeX"}}); 
+		</script></head><body><div class="content"><h1>Volume Average constants (test values)</h1><!--introduction--><p>A function for that return an arbitrary value for testing the various calculations performed for the volume averaging finite element methods.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Function definition</a></li><li><a href="#3">Define the constants</a></li><li><a href="#4">Define arbitrary nodal velocities</a></li><li><a href="#5">Define arbitrary intial concentration</a></li><li><a href="#6">Define arbitrary initial temperature</a></li></ul></div><h2>Function definition<a name="1"></a></h2><pre class="codeinput"><span class="keyword">function</span> [T, C, V] = parameters
+</pre><pre class="codeinput"><span class="comment">% PARAMETERS</span>
+<span class="comment">% Returns various paramters for testing volume average calculations</span>
+<span class="comment">%</span>
+<span class="comment">% Syntax:</span>
+<span class="comment">%   [T, C, V] = parameters;</span>
+<span class="comment">%</span>
+<span class="comment">% Description:</span>
+</pre><h2>Define the constants<a name="3"></a></h2><pre class="codeinput">	<span class="comment">% Physical constants (Table I of Samanta and Zabaras, 2005)</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'conductivity_solid'</span>, 3.97e-2); 		<span class="comment">% conductivity of solid, k_s [kW/m/C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'conductivity_fluid'</span>, 2.29e-2);		<span class="comment">% conductivity of fluid, k_l [kW/m/C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'specific_heat_solid'</span>, 0.1779);		<span class="comment">% specific heat of solid, c_s [kJ/kg/C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'specific_heat_fluid'</span>, 0.1547);		<span class="comment">% specific heat of fluid, c_l[kJ/kg/C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'latent_heat'</span>, 30.162);				<span class="comment">% latent heat, h_f [kJ/kg]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'partition_coefficient'</span>, 0.31);		<span class="comment">% equilibrium partition ratio,\kappa_p []</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'thermal_expansion'</span>, 1.09e-4);		<span class="comment">% thermal expansion coef., \Beta_T [1/C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'solute_expansion'</span>, 0.354);			<span class="comment">% solute expansion coef.. \Beta_s []</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'density_solid'</span>, 10800);				<span class="comment">% density of solid, \rho_s [kg/m^3]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'density_fluid'</span>, 10000);				<span class="comment">% desnity of fluid, \rho_l [kg/m^3]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'viscosity'</span>, 0.0023);				<span class="comment">% viscosity of fluid, \mu [kg/m/s]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'eutectic_temperature'</span>, 183);		<span class="comment">% eutectic temperature, T_{eut} [C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'melting_temperature'</span>, 327);			<span class="comment">% melting temperature, T_m [C]</span>
+<span class="comment">%	setpref('thermo_param','initial_temperature', 287);			% initial temperature, T_i [C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'ambient_temperature'</span>, 20);			<span class="comment">% ambient temperature, T_{amb} [C]</span>
+<span class="comment">%	setpref('thermo_param','initial_concentration', 19.2);		% initial concentration, C_{l,0} [wt%]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'gravity'</span>, 9.81);					<span class="comment">% gravity constant, g [m/s^2]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'liquidus_slope'</span>, -232.63); 			<span class="comment">% dimensionless slope of liquidus, m_liq [C]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'diffusion'</span>, 1.05e-9);				<span class="comment">% diffusion coefficient, D_l [m/s]</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'dentrite_arm_spacing'</span>, 0.001);		<span class="comment">% dentritic arm spacing, d [m]</span>
+
+	<span class="comment">% Iteration parameters for solving Temperature</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'temp_max_iter'</span>, 100);               <span class="comment">% maximum number of iterations</span>
+	setpref(<span class="string">'thermo_param'</span>,<span class="string">'temp_min_error'</span>, 0.001);			<span class="comment">% minium acceptable error</span>
+</pre><h2>Define arbitrary nodal velocities<a name="4"></a></h2><pre class="codeinput">V(1,:) = [1,2];
+V(2,:) = [1,0];
+V(3,:) = [1,1];
+V(4,:) = [0,0];
+</pre><h2>Define arbitrary intial concentration<a name="5"></a></h2><pre class="codeinput">C = [0.192, 0.192, 0.192, 0.192];
+</pre><h2>Define arbitrary initial temperature<a name="6"></a></h2><pre class="codeinput">T = [287, 287, 287, 287];
+</pre><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% Volume Average constants (test values)
+% A function for that return an arbitrary value for testing the various
+% calculations performed for the volume averaging finite element methods.
+
+%% Function definition
+function [T, C, V] = parameters
+% PARAMETERS
+% Returns various paramters for testing volume average calculations
+%
+% Syntax:
+%   [T, C, V] = parameters;
+%
+% Description:
+
+
+%% Define the constants
+	% Physical constants (Table I of Samanta and Zabaras, 2005)
+	setpref('thermo_param','conductivity_solid', 3.97e-2); 		% conductivity of solid, k_s [kW/m/C]
+	setpref('thermo_param','conductivity_fluid', 2.29e-2);		% conductivity of fluid, k_l [kW/m/C]	
+	setpref('thermo_param','specific_heat_solid', 0.1779);		% specific heat of solid, c_s [kJ/kg/C]
+	setpref('thermo_param','specific_heat_fluid', 0.1547);		% specific heat of fluid, c_l[kJ/kg/C]
+	setpref('thermo_param','latent_heat', 30.162);				% latent heat, h_f [kJ/kg]
+	setpref('thermo_param','partition_coefficient', 0.31);		% equilibrium partition ratio,\kappa_p []
+	setpref('thermo_param','thermal_expansion', 1.09e-4);		% thermal expansion coef., \Beta_T [1/C]
+	setpref('thermo_param','solute_expansion', 0.354);			% solute expansion coef.. \Beta_s []
+	setpref('thermo_param','density_solid', 10800);				% density of solid, \rho_s [kg/m^3]
+	setpref('thermo_param','density_fluid', 10000);				% desnity of fluid, \rho_l [kg/m^3]
+	setpref('thermo_param','viscosity', 0.0023);				% viscosity of fluid, \mu [kg/m/s]
+	setpref('thermo_param','eutectic_temperature', 183);		% eutectic temperature, T_{eut} [C]
+	setpref('thermo_param','melting_temperature', 327);			% melting temperature, T_m [C]
+%	setpref('thermo_param','initial_temperature', 287);			% initial temperature, T_i [C]
+	setpref('thermo_param','ambient_temperature', 20);			% ambient temperature, T_{amb} [C]
+%	setpref('thermo_param','initial_concentration', 19.2);		% initial concentration, C_{l,0} [wt%]
+	setpref('thermo_param','gravity', 9.81);					% gravity constant, g [m/s^2]
+	setpref('thermo_param','liquidus_slope', -232.63); 			% dimensionless slope of liquidus, m_liq [C]
+	setpref('thermo_param','diffusion', 1.05e-9);				% diffusion coefficient, D_l [m/s]
+	setpref('thermo_param','dentrite_arm_spacing', 0.001);		% dentritic arm spacing, d [m]
+	
+	% Iteration parameters for solving Temperature
+	setpref('thermo_param','temp_max_iter', 100);               % maximum number of iterations
+	setpref('thermo_param','temp_min_error', 0.001);			% minium acceptable error
+
+%% Define arbitrary nodal velocities
+V(1,:) = [1,2];
+V(2,:) = [1,0]; 
+V(3,:) = [1,1];
+V(4,:) = [0,0]; 
+
+%% Define arbitrary intial concentration
+C = [0.192, 0.192, 0.192, 0.192];
+
+%% Define arbitrary initial temperature
+T = [287, 287, 287, 287];
+
+
+##### SOURCE END #####
+--></body></html>

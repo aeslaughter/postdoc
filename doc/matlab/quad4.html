@@ -1,0 +1,234 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>4-Node Quadrilateral Element</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-07-17"><meta name="DC.source" content="quad4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">   
+			MathJax.Hub.Config({jax: ["input/TeX","output/HTML-CSS"],}); 
+			MathJax.Hub.Config({"HTML-CSS": {preferredFont: "TeX"}}); 
+		</script></head><body><div class="content"><h1>4-Node Quadrilateral Element</h1><!--introduction--><p>Returns the shape functions, shapve function derivatives, and velocity vector for a four node quadrilateral element.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Function definition</a></li><li><a href="#3">Return the nodes and quadrature points</a></li><li><a href="#4">Get the shape function and derivate matrices</a></li><li><a href="#5">Compute the velocity at the given location</a></li><li><a href="#7">Subfunction: Element shape functions</a></li><li><a href="#8">Subfunction: Element shape function gradients</a></li><li><a href="#9">References</a></li></ul></div><h2>Function definition<a name="1"></a></h2><pre class="codeinput"><span class="keyword">function</span> [N, B, varargout] = quad4(p,varargin)
+</pre><pre class="codeinput"><span class="comment">% QUAD4</span>
+<span class="comment">% 4-Node Quadrilateral</span>
+<span class="comment">%</span>
+<span class="comment">% Returns the shape functions, shapve function derivatives, and velocity</span>
+<span class="comment">% vector for a four node quadrilateral element.</span>
+<span class="comment">%</span>
+<span class="comment">% Syntax:</span>
+<span class="comment">%  [p,qp] = quad4;</span>
+<span class="comment">%  [N, B] = quad4(p);</span>
+<span class="comment">%  [N, B, v] = quad4(p, V);</span>
+<span class="comment">%</span>
+<span class="comment">% Description:</span>
+<span class="comment">%  [p,qp] = quad4 returns the node location and Gauss quadrature points</span>
+<span class="comment">%       for the element.</span>
+<span class="comment">%  [N, B] = quad4(p) returns the shape functions and gradients evaluated</span>
+<span class="comment">%       at the specified point.</span>
+<span class="comment">%  [N, B, v] = quad4(p, V) same as above but also returns the velocity</span>
+<span class="comment">%       vector projected at the specified point given the nodal velocities</span>
+<span class="comment">%       in V (see parameters.m).</span>
+</pre><h2>Return the nodes and quadrature points<a name="3"></a></h2><pre class="codeinput"><span class="keyword">if</span> nargin == 0;
+
+    <span class="comment">% Define local node locations (\(\xi, \eta\))</span>
+    p(1,:) = [-1, -1];
+    p(2,:) = [1, -1];
+    p(3,:) = [1, 1];
+    p(4,:) = [-1, 1];
+
+    <span class="comment">% Define the Guass quadrature points</span>
+    qp(1,:) = [-0.57735,-0.57735];
+    qp(2,:) = [0.57735, -0.57735];
+    qp(3,:) = [-0.57735, 0.57735];
+    qp(4,:) = [0.57735,  0.57735];
+
+    <span class="comment">% Return these values via N and B; halt the program</span>
+    N = p; B = qp;
+    <span class="keyword">return</span>;
+<span class="keyword">end</span>
+</pre><h2>Get the shape function and derivate matrices<a name="4"></a></h2><p>Uses the two sub-functions to compute the values of the shape functions and thier gradient at the supplied point. The functions names mimic those used by libMesh (see help on libMesh::FEBase).</p><pre class="codeinput">N = get_phi(p(1),p(2));
+B = get_dphi(p(1),p(2));
+</pre><h2>Compute the velocity at the given location<a name="5"></a></h2><p>If the user supplies the nodal velocities, then return the velocity vector at the point as computed using the shape functions.</p><pre class="codeinput"><span class="keyword">if</span> nargin == 2 &amp;&amp; ~isscalar(varargin{1});
+    NN = [N', zeros(size(N')); zeros(size(N')), N'];
+    d = reshape(varargin{1}, numel(varargin{1}),1);
+    varargout{1} = (NN*d)';
+<span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="keyword">end</span> <span class="comment">% quad4</span>
+</pre><h2>Subfunction: Element shape functions<a name="7"></a></h2><pre class="codeinput"><span class="keyword">function</span> N = get_phi(xi,eta)
+<span class="comment">% GET_PHI</span>
+<span class="comment">% Retruns the element shape functions evalauted at eta and xi</span>
+
+<span class="comment">% Fish &amp; Belytschko (2007), Eq. 7.27, p. 165</span>
+xiI = [-1,1,1,-1];
+etaI = [-1,-1,1,1];
+N = 1/4 * (1 + xiI * xi)' .* (1 + etaI * eta)';
+
+<span class="keyword">end</span> <span class="comment">% get_phi</span>
+</pre><h2>Subfunction: Element shape function gradients<a name="8"></a></h2><pre class="codeinput"><span class="keyword">function</span> B = get_dphi(xi,eta)
+<span class="comment">% GET_DPHI</span>
+<span class="comment">% Returns the shape function gradients evaluated at eta and xi</span>
+
+<span class="comment">% Fish &amp; Belytschko (2007), Ex. 8.2, p. 198</span>
+B(:,1) = 1/4 * [eta - 1;    xi - 1];
+B(:,2) = 1/4 * [1 - eta;    -xi - 1];
+B(:,3) = 1/4 * [1 + eta;    1 + xi];
+B(:,4) = 1/4 * [-eta - 1;   1 - xi];
+
+<span class="keyword">end</span> <span class="comment">% get_dphi</span>
+</pre><h2>References<a name="9"></a></h2><p>
+<dd>Fish, J. & Belytschko, T. </dd>
+<dd><i>A first course in finite elements. </i></dd>
+<dd>John Wiley and Sons, Ltd., <b>2007</b></dd>
+</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% 4-Node Quadrilateral Element
+% Returns the shape functions, shapve function derivatives, and velocity
+% vector for a four node quadrilateral element.
+
+%% Function definition
+function [N, B, varargout] = quad4(p,varargin)
+% QUAD4
+% 4-Node Quadrilateral
+%
+% Returns the shape functions, shapve function derivatives, and velocity
+% vector for a four node quadrilateral element.
+%
+% Syntax:
+%  [p,qp] = quad4;
+%  [N, B] = quad4(p);
+%  [N, B, v] = quad4(p, V);
+%
+% Description:
+%  [p,qp] = quad4 returns the node location and Gauss quadrature points
+%       for the element.
+%  [N, B] = quad4(p) returns the shape functions and gradients evaluated
+%       at the specified point.
+%  [N, B, v] = quad4(p, V) same as above but also returns the velocity 
+%       vector projected at the specified point given the nodal velocities
+%       in V (see parameters.m).
+
+%% Return the nodes and quadrature points
+if nargin == 0;
+    
+    % Define local node locations (\(\xi, \eta\))
+    p(1,:) = [-1, -1];
+    p(2,:) = [1, -1];
+    p(3,:) = [1, 1];
+    p(4,:) = [-1, 1];
+
+    % Define the Guass quadrature points
+    qp(1,:) = [-0.57735,-0.57735];
+    qp(2,:) = [0.57735, -0.57735];
+    qp(3,:) = [-0.57735, 0.57735];
+    qp(4,:) = [0.57735,  0.57735];
+
+    % Return these values via N and B; halt the program
+    N = p; B = qp;
+    return;
+end
+
+%% Get the shape function and derivate matrices
+% Uses the two sub-functions to compute the values of the shape functions
+% and thier gradient at the supplied point. The functions names mimic those
+% used by libMesh (see help on libMesh::FEBase).
+
+N = get_phi(p(1),p(2));
+B = get_dphi(p(1),p(2));
+
+%% Compute the velocity at the given location
+% If the user supplies the nodal velocities, then return the velocity
+% vector at the point as computed using the shape functions.
+
+if nargin == 2 && ~isscalar(varargin{1});
+    NN = [N', zeros(size(N')); zeros(size(N')), N'];
+    d = reshape(varargin{1}, numel(varargin{1}),1);
+    varargout{1} = (NN*d)';
+end
+
+end % quad4
+
+%% Subfunction: Element shape functions
+function N = get_phi(xi,eta)
+% GET_PHI
+% Retruns the element shape functions evalauted at eta and xi
+
+% Fish & Belytschko (2007), Eq. 7.27, p. 165
+xiI = [-1,1,1,-1];
+etaI = [-1,-1,1,1];
+N = 1/4 * (1 + xiI * xi)' .* (1 + etaI * eta)';
+
+end % get_phi
+
+%% Subfunction: Element shape function gradients
+function B = get_dphi(xi,eta)
+% GET_DPHI
+% Returns the shape function gradients evaluated at eta and xi
+
+% Fish & Belytschko (2007), Ex. 8.2, p. 198
+B(:,1) = 1/4 * [eta - 1;    xi - 1];
+B(:,2) = 1/4 * [1 - eta;    -xi - 1];
+B(:,3) = 1/4 * [1 + eta;    1 + xi];
+B(:,4) = 1/4 * [-eta - 1;   1 - xi];
+
+end % get_dphi
+
+%% References
+% <html>
+% <dd>Fish, J. & Belytschko, T. </dd>
+% <dd><i>A first course in finite elements. </i></dd>
+% <dd>John Wiley and Sons, Ltd., <b>2007</b></dd>
+% </html>
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,38 @@
+/*! \page matlab MATLAB Functions
+\tableofcontents
+
+Various programs were written in MATLAB to assist in data analysis and
+validiation. The following list summarizes the various programs written.
+
+\section matlab_volavg Volume Averge FEM Validation
+	- A four-node quadrilateral test element: \subpage matlab_volavg_quad4
+	- Constants and arbitrary velocity vectors for testing: \subpage matlab_volavg_param
+	- Test function for computing element length: \subpage matlab_volavg_elemlength
+	- Test function for computing \f$ \tau_1^e \f$: \subpage matlab_volavg_tau1
+	- Test function for assembling the energy equation: \subpage matlab_volavg_energy
+	- Function for testing the thermodynamic relationships: \subpage matlab_volavg_thermo
+*/
+
+/*! \page matlab_volavg_quad4 quad4.m
+\htmlinclude quad4.html
+*/
+
+/*! \page matlab_volavg_param parameters.m
+\htmlinclude parameters.html
+*/
+
+/*! \page matlab_volavg_elemlength elem_length.m
+\htmlinclude elem_length.html
+*/
+
+/*! \page matlab_volavg_tau1 tau_1.m
+\htmlinclude tau_1.html
+*/
+
+/*! \page matlab_volavg_energy energy.m
+\htmlinclude energy.html
+*/
+
+/*! \page matlab_volavg_thermo thermodynamics.m
+\htmlinclude thermodynamics.html
+*/

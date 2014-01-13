@@ -1,0 +1,49 @@
+/*! \namespace SlaughterCommon
+ * \brief Code that is shared throught the libraries
+ *
+ * The common library includes functions and classes that are used by
+ * various other programs.
+ */
+
+/*! \namespace SlaughterVol2mesh
+ * \brief Code related to the \c Vol2mesh class 
+ *
+ * This namespace includes the classes, typedefs, and functions associated
+ * with the Vol2mesh class.
+ * See \ref v2m for complete details on the useage of the 
+ * associated executable.
+ */
+
+/*! \namespace SlaughterFEM 
+ * \brief FEM related code
+ *
+ * The FEM library includes functions and classes that use the libMesh
+ * finite element library. Theese functions are meant to make the use
+ * of the libMesh functions simple and expandable.
+ */   
+
+/*! \defgroup FEMVolumeAverage FEM Volume Average Code 
+ * 
+ * The classes listed in this group are associated with implementing
+ * the momentum, mass, and energy equations using a volume averaged
+ * FEM techniques.
+ */
+ 
+ /*! \defgroup FEMVolumeAverageTest FEM Volume Average Test Code
+ * 
+ * The classes listed in this group are associated with testing the classes
+ * associated with the momentum, mass, and energy equations for the
+ * volume averaged FEM techniques.
+ */
+ 
+/*! \defgroup FEMTransientHeat FEM Transient Heat Equation Code
+ *  
+ * The classes listed in this group are associated with implementing
+ * the transient heat equation with the finite element method.
+ */
+ 
+/*! \defgroup FEMcommon General FEM related code
+ *  
+ * The classes listed in this group are general classes from which
+ * the problem specific FEM codes is based.
+ */
